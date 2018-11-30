@@ -1,2 +1,26 @@
-about using Who and which
-we shouldn't tell user how to ask a question about Mary is a duck and who is Mary or a duck
+Improvements:
+
+There are a couple of things that need to be improved:
+
+First, to use this application you need to know how it is constructed and who kind of format you should enter statements and how questions should be asked.
+So the first thing I would improve is the grammmar of how statements are processed. 
+
+#   S  -> P is AR Ns | P is A | P Is | P Ts P
+#   AR -> a | an
+
+The grammar below is too small to cover most of the frequent way of talking about things. For example, why does the first word need to always to a proper name? 
+or Why are proper names only identified by checking if the first word is a capital letter while it is convention to start a sentence with capital letter of any word.
+To solve this problem either I can have a list of most common proper noun or try to infer if the given first-letter capitalized word is proper from other clues from the sentence. 
+
+In addition, it does not accept simple statements like "Billy enjoys flying" because it is expecting what comes after Ts (Transitive verb) is  a prope noun).
+
+So, basically this grammar of processing statements should be enchanced to accept range of statements even very complex ones.
+
+Also, I feel like in FactBase class there should be Ternary function that accepts a more advanced staments like "Billy sing a song to Mary", sing(person1, person2, a song). And add grammar and processing instruction accordingly to proccess all  kinds of that statement. 
+Also, if there are other n-ary function that might exist in English, they should be added.
+
+Moreover, I would improve the whole program to not just tell you one thing about the statements but give you a context.
+Also, sentence can end in many ways, either by exclamation mark or ... or non-penctuation words or symbol as the user are likely to forget to put at the end of statements or make typos. 
+So I would extend it to do that automatically and infer from how a sentence is formated is something is question or statement.
+For example, if I asks who is Mary answer me in more natural way than just saying one word or two word, but form a logical sentence. 
+And I would extend it to read huge amount of statements and be able to process them accurately, and use machine learning to even answer question of facts it have never seen before but have seen similar things,or, more basic, to know when words are synomys or more closely similar words.

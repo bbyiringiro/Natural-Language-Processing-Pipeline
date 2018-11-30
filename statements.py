@@ -22,16 +22,16 @@ class Lexicon:
     def add(self, stem, cat):
         try:
             if (cat in ["P","N","A","I","T"]):
-                self.words.append((stem, cat))
+                add(self.words, (stem, cat))
             else: 
-                raise Exception ("wrong categories tag: "+ cat )
+                raise Exception ("The category tag: "+ cat + " is not supported")
         except Exception as error:
             print error
 
     def getAll(self, cat):
         categirizedWords=[]
         for w in self.words:
-            if(w[1]==cat and w[0] not in categirizedWords):
+            if(w[1]==cat and w[0] not in categirizedWords): # make sure not duplicates
                 categirizedWords.append(w[0])
         return categirizedWords
 
@@ -64,7 +64,7 @@ def verb_stem(s):
         stem = s[:-1]
     elif re.match ("[a-z]*[aeiou]ys$", s):
         stem = s[:-1]
-    elif re.match ("[a-z]+[^aeiou]ies$", s) and len(s) >= 5:
+    elif re.match ("[a-z][a-z]*[^aeiou]ies$", s):
         stem = s[:-3] + "y"
     elif re.match ("[^aeiou]ies$", s):
         stem = s[:-1]
@@ -74,10 +74,10 @@ def verb_stem(s):
         stem = s[:-1]
     elif s == "has":
         stem = "have"
-    elif re.match ("[a-z]*[^iosxz]es$", s) and s[-4:-2] != 'ch' and s[-4:-2] != 'sh':
+    elif re.match ("[a-z]*[^iosxz]es$", s) and s[-4:-2] != 'sh' and s[-4:-2] != 'ch':
         stem =  s[:-1]
     else:
-        return ""
+        return "" # return directly avoid the need to search through the dictionary
     if(isVBorZ(s, stem)):
         return stem
     else:
